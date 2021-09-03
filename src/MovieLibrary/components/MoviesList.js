@@ -11,17 +11,39 @@ export default class MoviesList extends PureComponent {
     movies: PropTypes.array.isRequired
   }
 
-  state = {
-    selectedMovie: null
+  constructor(props){
+    super(props);
+    this.state = {
+      movies: this.props.movies,
+      selectedMovie: null
+    }
   }
+
 
   handleSelectMovie = item => this.setState({selectedMovie: item})
 
-  handleSortingChange = sortingType => console.log(sortingType)
+  handleSortingChange = sortingType => {
+    console.log(sortingType)
+    let sortMethod;
+
+    if(sortingType == "name_asc"){
+      sortMethod = (a, b) => a.title > b.title ? 1 : -1
+    }
+
+    if(sortingType == "name_desc"){
+      sortMethod = (a, b) => a.title < b.title ? 1 : -1
+    }
+
+    if(sortingType == "rating"){
+      sortMethod = (a, b) => a.vote_average < b.vote_average ? 1 : -1
+    }
+    
+    this.setState({movies: this.state.movies.sort(sortMethod)})
+    this.forceUpdate()
+  }
 
   render() {
-
-    const {movies} = this.props
+    const {movies} = this.state
     const {selectedMovie} = this.state
 
     return (
@@ -32,7 +54,7 @@ export default class MoviesList extends PureComponent {
           </div>
           <div className="movies-grid">
           {movies.map(movie =>
-            <MovieListItem key={movie.id} movie={movie} isSelected={selectedMovie===movie} onSelect={this.handleSelectMovie}/>
+              <MovieListItem key={movie.id} movie={movie} isSelected={selectedMovie===movie} onSelect={this.handleSelectMovie}/>    
           )}
           </div>
         </div>
@@ -49,18 +71,15 @@ export default class MoviesList extends PureComponent {
 class ExpandedMovieItem extends Component {
   
   handleClick = e => {
-    console.log("click close")
     const {close} = this.props
     close(null)
   }
 
   render() {
     const {movie} = this.props
-    const {close} = this.props
 
     return (
       <div className="expanded-movie-item">
-        {console.log(close)}
         <div className="expanded-movie-content">
           <button className="close-movie" onClick={this.handleClick}>X</button>
           <TMDBImage src={movie.poster_path} className="poster" />
