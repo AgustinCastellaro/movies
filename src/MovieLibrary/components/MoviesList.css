@@ -1,32 +1,117 @@
-.movies-list {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+/* Sort by dropdown */
+.movies-sort{
+  margin: 40px 0;
 }
 
-.movies-list > .items {
-  width: 20%;
+.movies-sort select{
+  font-size: 15px;
+  max-width: 250px;
+  width: 100%;
+  padding: 10px 15px;
+  color: rgb(212, 212, 212);
+  background-color: #313131;
+  border: none;
+  border-radius: 5px;
+  outline: none;
 }
 
+
+/* Movies grid */
+.movies-grid{
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 250px);
+  grid-gap: 5px;
+}
+
+.movie-list-item{
+  margin: 0 0 20px;
+  cursor: pointer;
+}
+
+.movie-list-item.selected {
+  text-decoration: underline;
+}
+
+.movie-list-item .poster{
+  width: 100%;
+  background-color: #242424;
+}
+
+.movie-list-item .title{
+  color: #fff;
+  margin: 5px 0;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+/* Modal */
 .expanded-movie-item {
-  width: 80%;
+  position: fixed;
+  top: 0;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(13, 18, 26, 0.5);
+}
+
+.expanded-movie-content{
+  position: relative;
+  display: flex;
+  width: 800px;
+  height: 450px;
+  background: #242424;
+  border-radius: 5px;
+  
+  -webkit-box-shadow: 0px 0px 26px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 26px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 26px 0px rgba(0,0,0,0.3);
+}
+
+.expanded-movie-content .close-movie{
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  padding: 10px;
+  font-size: 20px;
+  color: #fff;
+  background: #D32424;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.expanded-movie-content .close-movie:hover{
+  background: #a11717;
+}
+
+.expanded-movie-item img{
+  height: 100%;
 }
 
 .expanded-movie-item h4 {
   display: inline;
 }
 
-.expanded-movie-item  > .description {
+.expanded-movie-item .description {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  color: #fff;
+  letter-spacing: 1px;
 }
 
-.movie-list-item {
-  cursor: pointer;
+.expanded-movie-item .description h2{
+  margin: 0 0 20px;
 }
 
-.movie-list-item.selected {
-  text-decoration: underline;
+.expanded-movie-item .description span.overview {
+  margin: 20px 0;
+  line-height: 1.5;
+  font-size: 16px;
+  text-align: start;
 }

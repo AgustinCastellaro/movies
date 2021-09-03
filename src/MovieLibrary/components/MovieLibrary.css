@@ -4,18 +4,21 @@
 
 .ML-logo {
   animation: ML-logo-spin infinite 8s ease;
-  height: 80px;
+  height: 50px;
 }
 
 .ML-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
   color: white;
+  background-color: #1a1a1a;
 }
 
 .ML-title {
-  font-size: 1.5em;
+  color: #fff;
+  font-size: 20px;
 }
 
 .ML-intro {
